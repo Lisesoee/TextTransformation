@@ -38,6 +38,8 @@ stages:
 
   - stage: test
     displayName: Test
+    pool:
+      vmImage: 'windows-latest'
     jobs:
       - job: TestApplication
         displayName: Test Application
