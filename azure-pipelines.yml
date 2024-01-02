@@ -50,6 +50,10 @@ stages:
             command: test
             projects: '**/*Test*/*.csproj'
             arguments: '--configuration debug'
+        - task: PublishTestResults@2
+          inputs:
+            testResultsFormat: 'JUnit'
+            testResultsFiles: '**/TEST-*.xml'
         # - task: VSTest@3
         #   inputs:
         #     testSelector: 'testAssemblies'
