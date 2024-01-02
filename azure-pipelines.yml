@@ -46,3 +46,16 @@ stages:
             arguments: '--configuration $(buildConfiguration)'            
             # arguments: '--configuration debug'
             publishTestResults: true
+
+  - stage: deliver
+    displayName: Deliver
+    pool:
+      vmImage: 'windows-latest'
+    jobs:
+      - job: DeliverApplication
+        displayName: Deliver Application
+        steps:
+        - task: PowerShell@2
+          inputs:
+            targetType: 'inline'
+            script: Write-Host "Pretend delivery done"
