@@ -45,11 +45,11 @@ stages:
         displayName: Test Application
         steps:
         - task: DotNetCoreCLI@2
-            displayName: Run Visual studio tests
-            inputs:
-              command: test
-              projects: '**/*Test*/*.csproj'
-              arguments: '--configuration debug'
+          displayName: Run Visual studio tests
+          inputs:
+            command: test
+            projects: '**/*Test*/*.csproj'
+            arguments: '--configuration debug'
         # - task: VSTest@3
         #   inputs:
         #     testSelector: 'testAssemblies'
