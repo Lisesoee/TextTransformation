@@ -1,12 +1,5 @@
-# ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
-
 trigger:
 - master
-
 
 variables:
   solution: '**/*.sln'
@@ -44,35 +37,12 @@ stages:
       - job: TestApplication
         displayName: Test Application
         steps:
+ 
         - task: DotNetCoreCLI@2
-          displayName: Run dotnet tests
+          displayName: Run Dotnet tests
           inputs:
-            command: 'test'
-            projects: '**/*.Tests.csproj'
-            arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage"'
+            command: test
+            projects: '**/*Test*/*.csproj'
+            arguments: '--configuration $(buildConfiguration)'            
+            # arguments: '--configuration debug'
             publishTestResults: true
-        - task: PublishCodeCoverageResults@1
-          displayName: 'Publish code coverage'
-          inputs:
-            codeCoverageTool: Cobertura
-            summaryFileLocation: $(Agent.TempDirectory)/*/coverage.cobertura.xml # using ** instead of * finds duplicate coverage files
-
-            
-        # - task: DotNetCoreCLI@2
-        #   displayName: Run Visual studio tests
-        #   inputs:
-        #     command: test
-        #     projects: '**/*Test*/*.csproj'
-        #     arguments: '--configuration debug'
-        # - task: PublishTestResults@2
-        #   inputs:
-        #     testResultsFormat: 'JUnit'
-        #     testResultsFiles: '**/TEST-*.xml'
-        # - task: VSTest@3
-        #   inputs:
-        #     testSelector: 'testAssemblies'
-        #     testAssemblyVer2: |
-        #       **\*test*.dll
-        #       !**\*TestAdapter.dll
-        #       !**\obj\**
-        #     searchFolder: '$(System.DefaultWorkingDirectory)'
