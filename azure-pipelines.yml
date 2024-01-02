@@ -44,11 +44,17 @@ stages:
       - job: TestApplication
         displayName: Test Application
         steps:
-        - task: VSTest@3
-          inputs:
-            testSelector: 'testAssemblies'
-            testAssemblyVer2: |
-              **\*test*.dll
-              !**\*TestAdapter.dll
-              !**\obj\**
-            searchFolder: '$(System.DefaultWorkingDirectory)'
+        - task: DotNetCoreCLI@2
+            displayName: Run Visual studio tests
+            inputs:
+              command: test
+              projects: '**/*Test*/*.csproj'
+              arguments: '--configuration debug'
+        # - task: VSTest@3
+        #   inputs:
+        #     testSelector: 'testAssemblies'
+        #     testAssemblyVer2: |
+        #       **\*test*.dll
+        #       !**\*TestAdapter.dll
+        #       !**\obj\**
+        #     searchFolder: '$(System.DefaultWorkingDirectory)'
