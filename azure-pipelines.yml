@@ -21,7 +21,7 @@ stages:
 
     jobs:
       - job: BuildApplication
-        dispayname: Build Application
+        displayName: Build Application
         steps:
         - task: NuGetToolInstaller@1
 
@@ -40,7 +40,7 @@ stages:
     displayName: Test
     jobs:
       - job: TestApplication
-        dispayname: Test Application
+        displayName: Test Application
         steps:
         - task: VSTest@3
           inputs:
