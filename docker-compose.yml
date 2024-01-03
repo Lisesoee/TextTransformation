@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  texttransformation:
+    image: ${DOCKER_REGISTRY-}texttransformation
+    # ports:
+    #   - "8080:8080"
+    build:
+      context: .
+      dockerfile: TextTransformation/Dockerfile
+    depends_on:
+      - spoonerismmicroservice
+
+  spoonerismmicroservice:
+    image: ${DOCKER_REGISTRY-}spoonerismmicroservice
+    build:
+      context: .
+      dockerfile: SpoonerismService/Dockerfile
+

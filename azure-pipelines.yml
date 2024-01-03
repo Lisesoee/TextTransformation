@@ -44,8 +44,6 @@ stages:
             command: test
             projects: '**/*Test*/*.csproj'
             arguments: '--configuration $(buildConfiguration)'            
-            # arguments: '--configuration debug'
-            publishTestResults: true
 
   - stage: deliver
     displayName: Deliver
@@ -59,3 +57,4 @@ stages:
           inputs:
             targetType: 'inline'
             script: Write-Host "Pretend delivery done"
+
