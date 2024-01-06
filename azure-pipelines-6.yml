@@ -17,22 +17,30 @@ stages:
   - job: DockerImage
     displayName: Build and push Docker image
     steps:
-    - task: Docker@1
-      displayName: 'Build the Docker image'
+    - task: Docker@2
       inputs:
-        containerregistrytype: 'Container Registry'
-        dockerRegistryEndpoint: 'Docker Hub'
-        command: 'Build an image'
-        dockerFile: '**/Dockerfile'
-        imageName: '$(ImageName)'
-        includeLatestTag: true
-        useDefaultContext: false
-        buildContext: '.'
-    - task: Docker@1
-      displayName: 'Push the Docker image to Dockerhub'
-      inputs:
-        containerregistrytype: 'Container Registry'
-        dockerRegistryEndpoint: 'Docker Hub'
-        command: 'Push an image'
-        imageName: '$(ImageName)'
-      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest')) 
+        containerRegistry: 'Docker Hub'
+        repository: 'lisesrepo'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+
+#: Runs successfully, but doesn't produce a file due to bug https://github.com/microsoft/azure-pipelines-tasks/issues/17893
+    # - task: Docker@1
+    #   displayName: 'Build the Docker image'
+    #   inputs:
+    #     containerregistrytype: 'Container Registry'
+    #     dockerRegistryEndpoint: 'Docker Hub'
+    #     command: 'Build an image'
+    #     dockerFile: '**/Dockerfile'
+    #     imageName: '$(ImageName)'
+    #     includeLatestTag: true
+    #     useDefaultContext: false
+    #     buildContext: '.'
+    # - task: Docker@1
+    #   displayName: 'Push the Docker image to Dockerhub'
+    #   inputs:
+    #     containerregistrytype: 'Container Registry'
+    #     dockerRegistryEndpoint: 'Docker Hub'
+    #     command: 'Push an image'
+    #     imageName: '$(ImageName)'
+    #   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest')) 
