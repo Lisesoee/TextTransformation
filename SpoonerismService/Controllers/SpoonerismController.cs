@@ -4,7 +4,8 @@ using SpoonerismMicroservice.Services;
 namespace SpoonerismMicroservice.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    //[Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class SpoonerismController : ControllerBase
     {
         private readonly ILogger<SpoonerismController> _logger;
@@ -14,14 +15,16 @@ namespace SpoonerismMicroservice.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetSpoonerizedResult")]
-        public ActionResult<string> Get(string text)
+        //[HttpGet(Name = "GetSpoonerizedResult")]
+        [HttpGet]
+        [ActionName("GetSpoonerizedResult")]
+        public string Get(string text)
         {
             SpoonerismService spoonerismService = new SpoonerismService();
+            string spoonerizedText = spoonerismService.ApplySpoonerism(text);
+            Console.WriteLine("Spoonerized Result = " + spoonerizedText);
 
-            return spoonerismService.ApplySpoonerism(text);
-        }
-
-       
+            return spoonerizedText;
+        }       
     }
 }

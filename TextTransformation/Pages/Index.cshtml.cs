@@ -14,10 +14,6 @@ namespace TextTransformation.Pages
             _logger = logger;
         }
 
-        public void OnGet()
-        {
-
-        }
         public async Task<IActionResult> OnPostTransform(string text)
         {
             var myTextTransformer = new TextTransformerService();
