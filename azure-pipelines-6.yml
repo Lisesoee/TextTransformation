@@ -10,7 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  ImageName: 'lisesoee2/spoonerismmicroservice:$(Build.BuildId)'  
+  ImageName: 'lisesoee2/texttransformation:$(Build.BuildId)'  
 
 stages:
 - stage: Build
