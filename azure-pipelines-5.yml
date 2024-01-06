@@ -1,0 +1,43 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+
+  - stage:
+    displayName: Build .NET application
+    jobs:
+      - job:
+        displayName: build job
+        steps:
+          - task: UseDotNet@2
+            displayName: Use .NET6 to build
+            inputs:
+              version: '6.0.x'
+              includePreviewVersions: true
+          - task: DotNetCoreCLI@2
+            displayName: Building Visual studio solution
+            inputs:
+              command: 'build'
+              projects: '**/*.csproj'
+              arguments: '--configuration debug'
+
+  - stage: 
+    displayName: Run unit tests
+    jobs:
+      - job:
+        displayName: unit tests job
+        steps:
+          - task: DotNetCoreCLI@2
+            displayName: Run Visual studio tests
+            inputs:
+              command: test
+              projects: '**/*Test*/*.csproj'
+              arguments: '--configuration debug'
