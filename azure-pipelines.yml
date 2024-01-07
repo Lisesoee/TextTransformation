@@ -8,6 +8,7 @@ variables:
   TextTransformerImageName: 'lisesoee2/texttransformer:$(Build.BuildId)'
   SpoomerismImageName: 'lisesoee2/spoonerismmicroservice:$(Build.BuildId)'  
 
+
 stages:
   - stage: build
     displayName: Build  
