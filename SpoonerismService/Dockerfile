@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["SpoonerismService/SpoonerismMicroservice.csproj", "SpoonerismService/"]
-RUN dotnet restore "SpoonerismService/SpoonerismMicroservice.csproj"
+COPY ["SpoonerismMicroservice/SpoonerismMicroservice.csproj", "SpoonerismMicroservice/"]
+RUN dotnet restore "SpoonerismMicroservice/SpoonerismMicroservice.csproj"
 COPY . .
-WORKDIR "/src/SpoonerismService"
+WORKDIR "/src/SpoonerismMicroservice"
 RUN dotnet build "SpoonerismMicroservice.csproj" -c Release -o /app/build
 
 FROM build AS publish

@@ -15,5 +15,5 @@ services:
     image: ${DOCKER_REGISTRY-}spoonerismmicroservice
     build:
       context: .
-      dockerfile: SpoonerismService/Dockerfile
+      dockerfile: SpoonerismMicroservice/Dockerfile
 
