@@ -1,0 +1,20 @@
+
+trigger:
+- none
+
+resources:
+  pipelines:
+  - pipeline: spoomerismservice-ci
+    trigger: true
+  - pipeline: texttransformation-ci
+    trigger: true
+  - pipeline: encryptionservice-ci
+    trigger: true
+  #[...]
+
+stages:
+ - stage: IntegrationTests 
+    #[...]
+ - stage: DockerComposeSwarmDeployment
+    #[...]
+
